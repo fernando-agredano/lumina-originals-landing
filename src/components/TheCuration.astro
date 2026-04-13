@@ -1,0 +1,85 @@
+---
+// TheCuration.astro
+---
+<section id="curation-section" class="relative w-full h-[300vh] bg-[#07070a]">
+  <div class="curation-pin sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-5 pointer-events-none z-0 mix-blend-screen">
+      <h2 class="font-serif text-[18vw] leading-[0.8] tracking-tighter whitespace-nowrap uppercase text-white curation-bg-text">
+        Curation
+      </h2>
+      <h2 class="font-serif text-[18vw] leading-[0.8] tracking-tighter whitespace-nowrap uppercase text-white curation-bg-text-2 pl-32">
+        Classics
+      </h2>
+    </div>
+
+    <div class="relative z-10 w-full max-w-[1400px] px-8 h-full flex flex-col justify-center">
+      <div class="flex flex-col md:flex-row items-center justify-between w-full h-auto md:h-[60vh] gap-12">
+        
+        <div class="w-full md:w-5/12 flex flex-col justify-center gap-6">
+          <p class="font-mono text-sm tracking-[0.15em] text-[#E23D28] uppercase">002 / The Catalog</p>
+          <h3 class="font-serif text-5xl md:text-6xl lg:text-7xl leading-none text-white block">
+            Handpicked<br/><span class="italic text-white/50 pt-2 block">Masterpieces.</span>
+          </h3>
+          <p class="font-sans text-lg md:text-xl text-white/50 max-w-md">
+            We reject the algorithm. Every piece in our collection is selected by industry veterans for its artistic merit and boundary-pushing narrative.
+          </p>
+          <button class="mt-4 border-b border-[#E23D28] text-[#E23D28] w-fit pb-1 uppercase font-mono text-xs tracking-[0.2em] hover:text-white hover:border-white transition-colors duration-300">Explore Catalog</button>
+        </div>
+
+        <div class="w-full md:w-7/12 relative h-[50vh] md:h-[70vh] flex items-center justify-center">
+          <div class="relative w-full max-w-[360px] md:max-w-[420px] aspect-[2/3] curation-cards">
+            
+            <div class="absolute inset-0 card-1 z-30 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
+               <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1280&auto=format&fit=crop" class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" alt="Film 1" />
+            </div>
+            
+            <div class="absolute inset-0 card-2 z-20 shadow-[0_20px_50px_rgba(0,0,0,0.8)] scale-95 translate-y-[5%] opacity-0 overflow-hidden">
+               <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=1280&auto=format&fit=crop" class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" alt="Film 2" />
+            </div>
+
+            <div class="absolute inset-0 card-3 z-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] scale-90 translate-y-[10%] opacity-0 overflow-hidden">
+               <img src="https://images.unsplash.com/photo-1549420067-1e5f8f844781?q=80&w=1280&auto=format&fit=crop" class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" alt="Film 3" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    const section = document.getElementById("curation-section");
+    if(section) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "+=350%",
+          scrub: 1,
+          pin: ".curation-pin",
+          anticipatePin: 1
+        }
+      });
+
+      tl.to(".curation-bg-text", { x: "-10vw", ease: "none", duration: 3 }, 0);
+      tl.to(".curation-bg-text-2", { x: "10vw", ease: "none", duration: 3 }, 0);
+      
+      // Card 1 stays for a bit
+      tl.to(".card-1", { y: "0%", duration: 0.5 }, 0);
+      
+      // Card 1 fades out, Card 2 fades in
+      tl.to(".card-1", { y: "-120%", opacity: 0, scale: 0.9, filter: "blur(10px)", rotation: -5, duration: 1 }, 0.5);
+      tl.to(".card-2", { y: "0%", opacity: 1, scale: 1, duration: 1 }, 0.5);
+      
+      // Card 2 stays, then fades out, Card 3 in
+      tl.to(".card-2", { y: "0%", duration: 0.5 }, 1.5);
+      tl.to(".card-2", { y: "-120%", opacity: 0, scale: 0.9, filter: "blur(10px)", rotation: 5, duration: 1 }, 2.0);
+      tl.to(".card-3", { y: "0%", opacity: 1, scale: 1, duration: 1 }, 2.0);
+    }
+  }
+</script>

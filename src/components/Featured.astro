@@ -1,0 +1,97 @@
+---
+// Featured.astro
+---
+
+<section id="featured-section" class="relative w-full min-h-screen bg-[#07070a] text-white py-32 px-8 flex flex-col justify-center overflow-hidden">
+  <div class="max-w-[1600px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    
+    <!-- Text Side -->
+    <div class="flex flex-col gap-8 pr-0 lg:pr-16 featured-text z-10 relative">
+      <p class="font-mono text-sm tracking-[0.2em] text-[#E23D28] uppercase">003 / Originals</p>
+      
+      <h3 class="font-serif text-5xl md:text-7xl leading-[0.9] tracking-tighter text-white">
+        Cinema<br/>Redefined.
+      </h3>
+      
+      <p class="font-sans text-xl md:text-2xl text-white/70 font-light max-w-lg mt-4">
+        Original productions that challenge the status quo. Shot on film, mastered for the digital era. Experience storytelling without boundaries.
+      </p>
+
+      <div class="mt-8">
+        <button class="group relative px-6 py-4 overflow-hidden border border-white text-white hover:border-transparent transition-colors duration-500 w-fit">
+          <span class="relative z-10 uppercase font-mono tracking-widest text-xs group-hover:text-white">Watch Trailers</span>
+          <div class="absolute inset-0 bg-[#E23D28] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Media Reveal Side -->
+    <div class="relative w-full h-[50vh] lg:h-[75vh] featured-media-container flex items-center justify-center bg-[#07070a] overflow-hidden">
+      <div class="featured-mask w-full h-full bg-[#07070a] absolute inset-0 z-20 origin-right"></div>
+      
+      <div class="relative w-full h-full overflow-hidden z-10 bg-black">
+        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1459&auto=format&fit=crop" 
+             alt="Featured Original" 
+             class="featured-img w-full h-full object-cover scale-125 origin-center grayscale brightness-75" />
+      </div>
+      
+      <!-- Overlay text on image -->
+      <div class="absolute bottom-6 left-6 z-30 hidden md:block">
+        <div class="bg-[#07070a]/70 backdrop-blur-md px-6 py-4 border border-white/10">
+          <p class="font-serif text-white text-2xl">Neon Nights</p>
+          <p class="font-mono text-[#E23D28] text-[10px] tracking-[0.2em] uppercase mt-2">Dir. K. Tanaka, 2026</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const section = document.getElementById("featured-section");
+    if(section) {
+      // Reveal Mask Animation
+      gsap.to(".featured-mask", {
+        scaleX: 0,
+        ease: "power3.inOut",
+        scrollTrigger: {
+          trigger: ".featured-media-container",
+          start: "top 75%",
+          end: "top 25%",
+          scrub: 1
+        }
+      });
+
+      // Parallax Image inside
+      gsap.to(".featured-img", {
+        scale: 1,
+        y: "10%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".featured-media-container",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+
+      // Text stagger up
+      gsap.from(".featured-text > *", {
+        y: 40,
+        opacity: 0,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".featured-text",
+          start: "top 80%",
+        }
+      });
+    }
+  }
+</script>

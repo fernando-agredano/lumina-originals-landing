@@ -1,0 +1,111 @@
+---
+// FooterCTA.astro
+---
+
+<footer class="relative w-full pb-8 bg-[#07070a] text-white flex flex-col items-center justify-center overflow-hidden px-8">
+  <!-- Interactive Background Glow -->
+  <div id="footer-glow" class="absolute w-[800px] h-[800px] bg-[#E23D28] rounded-full blur-[150px] opacity-20 pointer-events-none transition-transform duration-100 ease-out z-0"></div>
+
+  <!-- Centered CTA Section -->
+  <div class="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-4xl footer-content min-h-[60vh] py-16">
+    <p class="font-mono text-[11px] tracking-[0.3em] uppercase text-[#E23D28] mb-4">Ready to step into the dark?</p>
+    
+    <h2 class="font-serif text-6xl md:text-7xl lg:text-8xl leading-none tracking-tighter uppercase mb-8">
+      Begin<br/>Exploration.
+    </h2>
+
+    <div>
+      <button class="group relative px-10 py-5 mt-6 border border-white bg-transparent hover:bg-[#E23D28] hover:border-[#E23D28] transition-all duration-300">
+        <span class="uppercase font-mono tracking-widest text-sm text-white group-hover:text-black transition-colors duration-300">Start 7-Day Trial</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Comprehensive Footer Links -->
+  <div class="relative z-10 w-full flex flex-col gap-8 pt-12 mt-12 border-t border-white/10">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 font-mono text-xs uppercase tracking-widest text-white/50">
+      
+      <!-- Brand & Mission -->
+      <div class="flex flex-col gap-3 col-span-1 md:col-span-2 lg:pr-24">
+        <div class="flex items-center gap-3">
+          <div class="relative w-6 h-6 rounded-full border-[1.5px] border-white flex items-center justify-center overflow-hidden">
+            <div class="w-full h-[1.5px] bg-white absolute"></div>
+            <div class="w-2 h-2 bg-[#E23D28] rounded-full absolute right-0"></div>
+          </div>
+          <span class="font-serif text-xl text-white leading-none tracking-[0.15em] uppercase">Lumina</span>
+        </div>
+        <p class="leading-relaxed opacity-60 text-justify md:text-left text-[13px] md:text-sm font-sans normal-case tracking-normal">
+          Lumina is an exclusive streaming space dedicated to raw cinematic masterpieces and groundbreaking originals. We reject algorithmic curation in favor of human curation and pure, uninterrupted storytelling.
+        </p>
+      </div>
+
+      <!-- Links 1 -->
+      <div class="flex flex-col gap-4 text-[10px]">
+        <p class="text-white mb-2 tracking-[0.3em]">Platform</p>
+        <a href="#" class="hover:text-[#E23D28] transition-colors">Catalog</a>
+        <a href="#" class="hover:text-[#E23D28] transition-colors">Originals</a>
+        <a href="#" class="hover:text-[#E23D28] transition-colors">Pricing</a>
+        <a href="#" class="hover:text-[#E23D28] transition-colors">Supported Devices</a>
+      </div>
+
+      <!-- Links 2 -->
+      <div class="flex flex-col gap-4 text-[10px]">
+        <p class="text-white mb-2 tracking-[0.3em]">Legal</p>
+        <a href="#" class="hover:text-[#E23D28] transition-colors">Terms of Service</a>
+        <a href="#" class="hover:text-[#E23D28] transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-[#E23D28] transition-colors">Cookie Settings</a>
+        <a href="#" class="hover:text-[#E23D28] transition-colors">Contact Us</a>
+      </div>
+    </div>
+
+    <!-- Copyright Row -->
+    <div class="flex flex-col lg:flex-row justify-between items-center pt-8 border-t border-white/10 font-mono text-[10px] uppercase tracking-widest text-white/30 text-center lg:text-left gap-4">
+      <p>© 2026 LUMINA STREAMING LLC. ALL RIGHTS RESERVED.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-[#E23D28] transition-colors">Instagram</a>
+        <a href="#" class="hover:text-[#E23D28] transition-colors">Twitter (X)</a>
+        <a href="#" class="hover:text-[#E23D28] transition-colors">YouTube</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Fade up footer content
+    gsap.from(".footer-content > *", {
+      y: 50,
+      opacity: 0,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "footer",
+        start: "top 60%"
+      }
+    });
+
+    // Mouse move glow effect
+    const footer = document.querySelector('footer');
+    const glow = document.getElementById('footer-glow');
+    
+    if(footer && glow) {
+      footer.addEventListener('mousemove', (e) => {
+        const rect = footer.getBoundingClientRect();
+        const x = e.clientX - rect.left - 400; // 400 is half of 800px width
+        const y = e.clientY - rect.top - 400;
+        
+        gsap.to(glow, {
+          x: x,
+          y: y,
+          duration: 1,
+          ease: "power2.out"
+        });
+      });
+    }
+  }
+</script>

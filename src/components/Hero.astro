@@ -1,0 +1,85 @@
+---
+// Hero.astro
+---
+<section class="relative w-full h-[100svh] overflow-hidden flex flex-col justify-end bg-black">
+  <!-- Immersive Canvas/Background -->
+  <div class="absolute inset-0 z-0">
+    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2825&auto=format&fit=crop" 
+         alt="Cinematic Background" 
+         class="w-full h-full object-cover opacity-60 scale-105 hero-bg" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-transparent h-48 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#07070a] via-transparent to-black/40"></div>
+  </div>
+
+  <!-- Hero Content Overlay -->
+  <div id="hero-overlay" class="relative z-20 w-full px-8 pb-16 flex flex-col justify-end h-[70vh]">
+    <div class="flex flex-col gap-2">
+      <p class="font-mono text-sm tracking-[0.2em] text-[#E23D28] uppercase hero-label w-fit px-4 py-2 bg-[#07070a]/60 backdrop-blur-md border border-white/10 rounded-sm">001 / Premiere</p>
+      
+      <!-- Massive Typography -->
+      <h1 class="font-serif text-[12vw] leading-[0.8] tracking-tighter text-white uppercase min-w-max">
+        <span class="block overflow-hidden"><span class="block hero-word">The</span></span>
+        <span class="block overflow-hidden"><span class="block hero-word">Unseen</span></span>
+      </h1>
+      
+      <p class="font-sans text-xl md:text-2xl text-white/70 max-w-xl mt-6 font-light hero-desc">
+        Curated cinema perfectly crafted for the digital void. Stream the most exclusive masterpieces directly to you.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-bg {
+    animation: scale-in 10s ease-out forwards;
+  }
+  .hero-label {
+    opacity: 0;
+    animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  }
+  .hero-word {
+    transform: translateY(100%);
+    animation: slide-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .hero-word:nth-child(1) { animation-delay: 0.3s; }
+  .hero-word:nth-child(2) { animation-delay: 0.45s; }
+  .hero-desc {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+  }
+  @keyframes scale-in {
+    0% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  @keyframes slide-up {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes fade-up {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  h1 {
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to("#hero-overlay", {
+      opacity: 0,
+      y: -100,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+  }
+</script>
