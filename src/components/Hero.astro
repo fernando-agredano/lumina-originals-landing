@@ -11,18 +11,17 @@
     <div class="absolute inset-0 bg-gradient-to-t from-[#07070a] via-transparent to-black/40"></div>
   </div>
 
-  <!-- Hero Content Overlay -->
-  <div id="hero-overlay" class="relative z-20 w-full px-8 pb-16 flex flex-col justify-end h-[70vh]">
-    <div class="flex flex-col gap-2">
-      <p class="font-mono text-sm tracking-[0.2em] text-[#E23D28] uppercase hero-label w-fit px-4 py-2 bg-[#07070a]/60 backdrop-blur-md border border-white/10 rounded-sm">001 / Premiere</p>
+  <!-- Hero Content Overlay — layout matches original from md up; narrow viewports use tighter type/spacing to avoid horizontal scroll -->
+  <div id="hero-overlay" class="relative z-20 w-full max-w-full min-w-0 flex flex-col justify-end px-4 pb-10 min-h-[55vh] md:min-h-0 md:h-[70vh] md:px-8 md:pb-16">
+    <div class="flex flex-col gap-2 min-w-0 max-w-full md:max-w-none">
+      <p class="font-mono text-xs tracking-[0.2em] text-[#E23D28] uppercase hero-label w-fit px-3 py-1.5 bg-[#07070a]/60 backdrop-blur-md border border-white/10 rounded-sm md:text-sm md:px-4 md:py-2">001 / Premiere</p>
       
-      <!-- Massive Typography -->
-      <h1 class="font-serif text-[12vw] leading-[0.8] tracking-tighter text-white uppercase min-w-max">
+      <h1 class="font-serif text-[clamp(2.75rem,11vw,7.5rem)] leading-[0.88] tracking-tighter text-white uppercase max-w-full min-w-0 md:min-w-max md:max-w-none md:text-[12vw] md:leading-[0.8]">
         <span class="block overflow-hidden"><span class="block hero-word">The</span></span>
         <span class="block overflow-hidden"><span class="block hero-word">Unseen</span></span>
       </h1>
       
-      <p class="font-sans text-xl md:text-2xl text-white/70 max-w-xl mt-6 font-light hero-desc">
+      <p class="font-sans text-xl md:text-2xl mt-6 text-white/70 max-w-xl font-light hero-desc max-sm:text-base max-sm:mt-4">
         Curated cinema perfectly crafted for the digital void. Stream the most exclusive masterpieces directly to you.
       </p>
     </div>
@@ -59,8 +58,6 @@
   @keyframes fade-up {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
-  }
-  h1 {
   }
 </style>
 

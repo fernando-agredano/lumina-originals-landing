@@ -1,33 +1,35 @@
 ---
 // TheCuration.astro
 ---
-<section id="curation-section" class="relative w-full h-[300vh] bg-[#07070a]">
+<section id="curation-section" class="relative w-full h-[300vh] bg-[#07070a] scroll-mt-[7.5rem] md:scroll-mt-24">
   <div class="curation-pin sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 flex flex-col items-center justify-center opacity-5 pointer-events-none z-0 mix-blend-screen">
       <h2 class="font-serif text-[18vw] leading-[0.8] tracking-tighter whitespace-nowrap uppercase text-white curation-bg-text">
         Curation
       </h2>
-      <h2 class="font-serif text-[18vw] leading-[0.8] tracking-tighter whitespace-nowrap uppercase text-white curation-bg-text-2 pl-32">
+      <h2 class="font-serif text-[18vw] leading-[0.8] tracking-tighter whitespace-nowrap uppercase text-white curation-bg-text-2 pl-8 sm:pl-16 md:pl-24 lg:pl-32">
         Classics
       </h2>
     </div>
 
-    <div class="relative z-10 w-full max-w-[1400px] px-8 h-full flex flex-col justify-center">
-      <div class="flex flex-col md:flex-row items-center justify-between w-full h-auto md:h-[60vh] gap-12">
+    <div class="relative z-10 w-full max-w-[1400px] px-4 sm:px-8 h-full flex flex-col justify-center min-h-0">
+      <div class="flex flex-col md:flex-row items-center justify-between w-full h-auto md:h-[60vh] gap-10 md:gap-12">
         
-        <div class="w-full md:w-5/12 flex flex-col justify-center gap-6">
-          <p class="font-mono text-sm tracking-[0.15em] text-[#E23D28] uppercase">002 / The Catalog</p>
-          <h3 class="font-serif text-5xl md:text-6xl lg:text-7xl leading-none text-white block">
+        <!-- z-index keeps copy + CTA above card stack when GSAP moves cards upward on mobile -->
+        <div class="relative z-30 w-full md:w-5/12 flex flex-col justify-center gap-4 sm:gap-6 text-center md:text-left mx-auto md:mx-0 max-w-lg md:max-w-none">
+          <p class="font-mono text-xs sm:text-sm tracking-[0.15em] text-[#E23D28] uppercase">002 / The Catalog</p>
+          <h3 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.95] md:leading-none text-white block">
             Handpicked<br/><span class="italic text-white/50 pt-2 block">Masterpieces.</span>
           </h3>
-          <p class="font-sans text-lg md:text-xl text-white/50 max-w-md">
+          <p class="font-sans text-base sm:text-lg md:text-xl text-white/50 max-w-md mx-auto md:mx-0">
             We reject the algorithm. Every piece in our collection is selected by industry veterans for its artistic merit and boundary-pushing narrative.
           </p>
-          <button class="mt-4 border-b border-[#E23D28] text-[#E23D28] w-fit pb-1 uppercase font-mono text-xs tracking-[0.2em] hover:text-white hover:border-white transition-colors duration-300">Explore Catalog</button>
+          <button type="button" class="relative z-30 mt-4 mx-auto md:mx-0 border-b border-[#E23D28] text-[#E23D28] w-fit pb-1 uppercase font-mono text-xs tracking-[0.2em] hover:text-white hover:border-white transition-colors duration-300">Explore Catalog</button>
         </div>
 
-        <div class="w-full md:w-7/12 relative h-[50vh] md:h-[70vh] flex items-center justify-center">
-          <div class="relative w-full max-w-[360px] md:max-w-[420px] aspect-[2/3] curation-cards">
+        <!-- overflow-hidden clips card exit animation so it does not paint over the CTA above -->
+        <div class="relative z-10 w-full md:w-7/12 h-[42vh] min-h-[280px] sm:h-[50vh] md:h-[70vh] flex items-center justify-center overflow-hidden mt-2 md:mt-0">
+          <div class="relative w-full max-w-[280px] sm:max-w-[360px] md:max-w-[420px] aspect-[2/3] curation-cards">
             
             <div class="absolute inset-0 card-1 z-30 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1280&auto=format&fit=crop" class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" alt="Film 1" />

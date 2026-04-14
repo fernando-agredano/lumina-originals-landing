@@ -13,7 +13,7 @@ const { title = "LUMINA | The Unseen Cinema" } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" sizes="any" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     
@@ -23,28 +23,36 @@ const { title = "LUMINA | The Unseen Cinema" } = Astro.props;
   </head>
   <body>
     <!-- Navbar / Header overlay -->
-    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b border-transparent px-8 py-6 text-[#efefef] grid grid-cols-2 md:grid-cols-3 items-center">
-      <!-- Logo -->
-      <div class="flex items-center gap-3 cursor-pointer group">
-        <div class="relative w-6 h-6 rounded-full border-[1.5px] border-white flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-110">
-          <div class="w-full h-[1.5px] bg-white absolute"></div>
-          <div class="w-2 h-2 bg-[#E23D28] rounded-full absolute right-0"></div>
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b border-transparent px-4 sm:px-8 py-4 sm:py-6 text-[#efefef] flex flex-col gap-3 md:gap-0 md:grid md:grid-cols-3 md:items-center">
+      <div class="flex w-full items-center justify-between gap-3 min-w-0">
+        <!-- Logo -->
+        <div class="flex min-w-0 items-center gap-2 sm:gap-3 cursor-pointer group">
+          <div class="relative w-5 h-5 sm:w-6 sm:h-6 shrink-0 rounded-full border-[1.5px] border-white flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-110">
+            <div class="w-full h-[1.5px] bg-white absolute"></div>
+            <div class="w-2 h-2 bg-[#E23D28] rounded-full absolute right-0"></div>
+          </div>
+          <span class="font-serif text-lg sm:text-xl leading-none tracking-[0.15em] uppercase truncate">Lumina</span>
         </div>
-        <span class="font-serif text-xl leading-none tracking-[0.15em] uppercase">Lumina</span>
+        
+        <!-- Nav Links — desktop -->
+        <nav class="hidden md:flex gap-10 uppercase font-mono text-[11px] tracking-[0.2em] justify-center">
+          <a href="#curation-section" class="hover:text-[#E23D28] transition-colors duration-300">Catalog</a>
+          <a href="#featured-section" class="hover:text-[#E23D28] transition-colors duration-300">Originals</a>
+        </nav>
+        
+        <!-- Action -->
+        <div class="flex shrink-0 justify-end">
+          <button type="button" class="uppercase border border-white/30 bg-black/20 backdrop-blur-sm px-4 py-2 sm:px-6 hover:bg-[#E23D28] hover:border-[#E23D28] transition-colors duration-300 font-mono text-[10px] sm:text-[11px] tracking-[0.2em] text-white">
+            Sign In
+          </button>
+        </div>
       </div>
-      
-      <!-- Nav Links -->
-      <nav class="hidden md:flex gap-10 uppercase font-mono text-[11px] tracking-[0.2em] justify-center">
-        <a href="#curation-section" class="hover:text-[#E23D28] transition-colors duration-300">Catalog</a>
-        <a href="#featured-section" class="hover:text-[#E23D28] transition-colors duration-300">Originals</a>
+
+      <!-- Nav — mobile: same anchors as desktop, compact row -->
+      <nav class="flex md:hidden w-full justify-center gap-8 border-t border-white/10 pt-3 uppercase font-mono text-[10px] tracking-[0.2em]">
+        <a href="#curation-section" class="hover:text-[#E23D28] transition-colors duration-300 py-1">Catalog</a>
+        <a href="#featured-section" class="hover:text-[#E23D28] transition-colors duration-300 py-1">Originals</a>
       </nav>
-      
-      <!-- Action -->
-      <div class="flex justify-end">
-        <button class="uppercase border border-white/30 bg-black/20 backdrop-blur-sm px-6 py-2 hover:bg-[#E23D28] hover:border-[#E23D28] transition-colors duration-300 font-mono text-[11px] tracking-[0.2em] text-white">
-          Sign In
-        </button>
-      </div>
     </header>
 
     <main id="smooth-wrapper">
@@ -59,11 +67,11 @@ const { title = "LUMINA | The Unseen Cinema" } = Astro.props;
         const nav = document.getElementById('navbar');
         if (nav) {
           if (window.scrollY > 50) {
-            nav.classList.add('bg-[#07070a]/90', 'backdrop-blur-md', 'border-white/10', 'py-4');
-            nav.classList.remove('py-6', 'border-transparent');
+            nav.classList.add('bg-[#07070a]/90', 'backdrop-blur-md', 'border-white/10', 'py-3', 'sm:py-4');
+            nav.classList.remove('py-4', 'sm:py-6', 'border-transparent');
           } else {
-            nav.classList.remove('bg-[#07070a]/90', 'backdrop-blur-md', 'border-white/10', 'py-4');
-            nav.classList.add('py-6', 'border-transparent');
+            nav.classList.remove('bg-[#07070a]/90', 'backdrop-blur-md', 'border-white/10', 'py-3', 'sm:py-4');
+            nav.classList.add('py-4', 'sm:py-6', 'border-transparent');
           }
         }
       });

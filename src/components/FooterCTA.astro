@@ -2,21 +2,21 @@
 // FooterCTA.astro
 ---
 
-<footer class="relative w-full pb-8 bg-[#07070a] text-white flex flex-col items-center justify-center overflow-hidden px-8">
-  <!-- Interactive Background Glow -->
-  <div id="footer-glow" class="absolute w-[800px] h-[800px] bg-[#E23D28] rounded-full blur-[150px] opacity-20 pointer-events-none transition-transform duration-100 ease-out z-0"></div>
+<footer class="relative w-full pb-6 sm:pb-8 bg-[#07070a] text-white flex flex-col items-center justify-center overflow-hidden px-4 sm:px-8">
+  <!-- Interactive Background Glow — scaled down on narrow viewports to avoid horizontal overflow -->
+  <div id="footer-glow" class="absolute left-0 top-0 w-[min(100vw,800px)] h-[min(100vw,800px)] max-w-[800px] max-h-[800px] bg-[#E23D28] rounded-full blur-[100px] sm:blur-[150px] opacity-20 pointer-events-none transition-transform duration-100 ease-out z-0 will-change-transform"></div>
 
   <!-- Centered CTA Section -->
-  <div class="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-4xl footer-content min-h-[60vh] py-16">
-    <p class="font-mono text-[11px] tracking-[0.3em] uppercase text-[#E23D28] mb-4">Ready to step into the dark?</p>
+  <div class="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-4xl footer-content min-h-[50vh] sm:min-h-[60vh] py-12 sm:py-16">
+    <p class="font-mono text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-[#E23D28] mb-3 sm:mb-4 px-2">Ready to step into the dark?</p>
     
-    <h2 class="font-serif text-6xl md:text-7xl lg:text-8xl leading-none tracking-tighter uppercase mb-8">
+    <h2 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] sm:leading-none tracking-tighter uppercase mb-6 sm:mb-8 px-2">
       Begin<br/>Exploration.
     </h2>
 
     <div>
-      <button class="group relative px-10 py-5 mt-6 border border-white bg-transparent hover:bg-[#E23D28] hover:border-[#E23D28] transition-all duration-300">
-        <span class="uppercase font-mono tracking-widest text-sm text-white group-hover:text-black transition-colors duration-300">Start 7-Day Trial</span>
+      <button type="button" class="group relative w-full max-w-sm sm:w-auto px-8 sm:px-10 py-4 sm:py-5 mt-4 sm:mt-6 border border-white bg-transparent hover:bg-[#E23D28] hover:border-[#E23D28] transition-all duration-300">
+        <span class="uppercase font-mono tracking-widest text-xs sm:text-sm text-white group-hover:text-black transition-colors duration-300">Start 7-Day Trial</span>
       </button>
     </div>
   </div>
@@ -96,8 +96,9 @@
     if(footer && glow) {
       footer.addEventListener('mousemove', (e) => {
         const rect = footer.getBoundingClientRect();
-        const x = e.clientX - rect.left - 400; // 400 is half of 800px width
-        const y = e.clientY - rect.top - 400;
+        const half = glow.offsetWidth / 2;
+        const x = e.clientX - rect.left - half;
+        const y = e.clientY - rect.top - half;
         
         gsap.to(glow, {
           x: x,
